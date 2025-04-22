@@ -17,8 +17,8 @@ jobs:
     # Run Snyk OpenSource Test
     - name: Snyk OpenSource Test
       run: 
-          snyk test --unmanaged --print-dep-paths | true
+          snyk test --unmanaged --print-dep-paths || true
 
     # Run Snyk Code Test
     - name: Snyk Code Scanning
-      run: snyk code test | true
+      run: snyk code test || true
