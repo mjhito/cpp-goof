@@ -1,0 +1,26 @@
+name: workflow for c/c++
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+     # Install & prepare Snyk
+    - run: npm install --location=global snyk
+
+    # Authenticate Snyk      
+    - run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+    # Run Snyk OpenSource Test
+    - name: Snyk OpenSource Test
+      run: 
+          snyk test --unmanaged --print-dep-paths
+      continue-on-error: true
+
+    # Run Snyk Code Test
+    - name: Snyk Code Scanning
+      run: snyk code test
+      continue-on-error: true
