@@ -21,8 +21,8 @@ jobs:
       run: 
           snyk test --unmanaged --print-dep-paths || true
           
-    # Run Snyk OpenSource Test
-    - name: Snyk OpenSource Test
+    # Run Snyk OpenSource Monitor
+    - name: Snyk OpenSource Monitor
       run: 
           snyk monitor --unmanaged --print-dep-paths --org=pipeline-examples || true
           
